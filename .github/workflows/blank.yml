@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>hello,18</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(
+180deg,
+#fff0f7,
+#ffd8eb,
+#ffeef7
+);
+
+color:#d63384;
+
+overflow-x:hidden;
+
+text-align:center;
+}
+
+/* LOADING */
+
+#loading{
+
+position:fixed;
+
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(
+180deg,
+#ffe6f2,
+#ffd6ea
+);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999999;
+}
+
+#loading-gif{
+
+width:220px;
+
+height:220px;
+
+display:block;
+
+object-fit:contain;
+
+animation:
+kittyMove 3s infinite ease-in-out;
+}
+
+@keyframes kittyMove{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+}
+
+.loading-text{
+
+margin-top:20px;
+
+font-size:28px;
+
+color:#ff4fa3;
+}
+
+/* ADMIN */
+
+#admin-icon{
+
+position:fixed;
+
+top:15px;
+right:15px;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+cursor:pointer;
+
+border:3px solid white;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.15);
+
+z-index:99999;
+}
+
+/* MAIN */
+
+.container{
+
+display:none;
+
+padding:30px 15px 80px;
+}
+
+.show-main{
+
+display:block;
+
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+}
+
+/* TITLES */
+
+h1{
+
+font-size:42px;
+
+margin-top:20px;
+}
+
+.subtitle{
+
+margin-top:10px;
+
+opacity:.8;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-top:25px;
+}
+
+.time-box{
+
+background:white;
+
+padding:15px;
+
+width:90px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(255,105,180,.15);
+}
+
+.time-box span{
+
+display:block;
+
+font-size:28px;
+
+font-weight:bold;
+}
+
+/* CARDS */
+
+.form-card,
+.wall-card,
+.convite-card,
+.carta-card,
+.carousel-card,
+.admin-card{
+
+background:white;
+
+max-width:760px;
+
+margin:25px auto;
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:
+0 8px 20px rgba(255,105,180,.12);
+}
+
+/* INPUTS */
+
+input,
+textarea{
+
+width:100%;
+
+margin-top:10px;
+
+padding:14px;
+
+border-radius:14px;
+
+border:1px solid #ffc7df;
+
+outline:none;
+
+font-size:15px;
+}
+
+textarea{
+
+min-height:120px;
+
+resize:none;
+}
+
+/* BUTTON */
+
+button{
+
+background:#ff69b4;
+
+color:white;
+
+border:none;
+
+padding:12px 22px;
+
+border-radius:30px;
+
+margin-top:15px;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+background:#ff4fa3;
+}
+
+/* WALL */
+
+.wall-message{
+
+background:#fff4fa;
+
+padding:15px;
+
+border-radius:18px;
+
+margin-top:15px;
+}
+
+/* CONVITE */
+
+#convite-img{
+
+width:320px;
+height:568px;
+
+object-fit:cover;
+
+border-radius:25px;
+
+margin-top:15px;
+}
+
+/* CARROSSEL */
+
+.carousel-wrapper{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:15px;
+}
+
+#carousel{
+
+width:320px;
+}
+
+#carousel img{
+
+width:100%;
+height:430px;
+
+object-fit:cover;
+
+border-radius:25px;
+}
+
+/* HEART */
+
+#big-heart{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:
+translate(-50%,-50%)
+scale(0);
+
+font-size:120px;
+
+opacity:0;
+
+transition:.4s;
+
+pointer-events:none;
+}
+
+.show-heart{
+
+opacity:1 !important;
+
+transform:
+translate(-50%,-50%)
+scale(1.2) !important;
+}
+
+/* ARROWS */
+
+.arrow{
+
+width:45px;
+height:45px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+cursor:pointer;
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.1);
+
+transition:.3s;
+}
+
+.arrow:hover{
+
+transform:scale(1.1);
+}
+
+/* COMMENTS */
+
+.comment{
+
+background:#fff4fa;
+
+padding:10px;
+
+border-radius:12px;
+
+margin-top:10px;
+}
+
+/* ADMIN PANEL */
+
+#admin-panel{
+
+display:none;
+
+position:fixed;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:92%;
+max-width:850px;
+
+max-height:90vh;
+
+overflow:auto;
+
+background:white;
+
+padding:25px;
+
+border-radius:25px;
+
+z-index:999999;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.2);
+}
+
+.close-admin{
+
+float:right;
+
+font-size:25px;
+
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOADING -->
+
+<div id="loading">
+
+<img
+id="loading-gif"
+src="https://media.tenor.com/GGk5Q0vGdWAAAAAC/hello-kitty.gif"
+alt="loading gif"
+>
+
+<div class="loading-text">
+Loading...
+</div>
+
+</div>
+
+<!-- ADMIN -->
+
+<img
+id="admin-icon"
+src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+>
+
+<!-- MAIN -->
+
+<div
+class="container"
+id="main-content"
+>
+
+<h1>Deixe seu carinho </h1>
+
+<p class="subtitle">
+Cada recadinho deixa meu dia mais especial 💗
+</p>
+
+<!-- CONTAGEM -->
+
+<div class="countdown">
+
+<div class="time-box">
+<span id="dias">0</span>
+Dias
+</div>
+
+<div class="time-box">
+<span id="horas">0</span>
+Horas
+</div>
+
+<div class="time-box">
+<span id="minutos">0</span>
+Min
+</div>
+
+<div class="time-box">
+<span id="segundos">0</span>
+Seg
+</div>
+
+</div>
+<!-- FORMULÁRIO -->
+
+<div class="form-card">
+
+<h2>Deixe seu recado</h2>
+
+<input
+type="text"
+id="nome"
+placeholder="Seu nome"
+>
+
+<textarea
+id="recado"
+placeholder="Escreva algo especial..."
+></textarea>
+
+<div style="margin-top:15px;">
+
+<label>
+
+<input
+type="radio"
+name="privacidade"
+value="publico"
+checked
+>
+
+Público
+
+</label>
+
+<br><br>
+
+<label>
+
+<input
+type="radio"
+name="privacidade"
+value="privado"
+>
+
+Privado 🔒
+
+</label>
+
+</div>
+
+<button onclick="salvarRecado()">
+Enviar 
+</button>
+
+</div>
+
+<!-- WISH WALL -->
+
+<div class="wall-card">
+
+<h2>#deizotoubeca♡</h2>
+
+<div id="lista-recados"></div>
+
+</div>
+
+<!-- CONVITE -->
+
+<div class="convite-card">
+
+<h2>Convite Especial</h2>
+
+<img id="convite-img">
+
+</div>
+
+<!-- CARTA -->
+
+<div class="carta-card">
+
+<h2>Carta aos Convidados</h2>
+
+<p
+id="texto-carta"
+
+style="
+margin-top:15px;
+line-height:1.8;
+"
+>
+</p>
+
+</div>
+
+<!-- CARROSSEL -->
+
+<div class="carousel-card">
+
+<h2>Linha do Tempo</h2>
+
+<div class="carousel-wrapper">
+
+<!-- SETA ESQUERDA -->
+
+<div
+class="arrow"
+onclick="fotoAnterior()"
+>
+❮
+</div>
+
+<!-- FOTO -->
+
+<div id="carousel">
+
+<div style="position:relative;">
+
+<img id="carousel-img">
+
+<div id="big-heart">
+❤️
+</div>
+
+</div>
+
+<!-- CURTIR -->
+
+<div style="margin-top:15px;">
+
+<button onclick="curtirFoto()">
+❤️ Curtir
+</button>
+
+<span id="likes">
+0
+</span>
+
+</div>
+
+<!-- COMENTAR -->
+
+<div style="margin-top:15px;">
+
+<input
+type="text"
+id="comentario"
+placeholder="Comente algo..."
+>
+
+<button onclick="comentarFoto()">
+Enviar
+</button>
+
+</div>
+
+<!-- COMENTÁRIOS -->
+
+<div
+id="lista-comentarios"
+
+style="
+margin-top:15px;
+"
+></div>
+
+</div>
+
+<!-- SETA DIREITA -->
+
+<div
+class="arrow"
+onclick="fotoProxima()"
+>
+❯
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- FECHA MAIN -->
+
+<!-- ADMIN PANEL -->
+
+<div id="admin-panel">
+
+<div
+class="close-admin"
+onclick="fecharAdmin()"
+>
+✖
+</div>
+
+<h2>🎀 Painel Admin 🎀</h2>
+
+<!-- GIF LOADING -->
+
+<div class="admin-card">
+
+<h3>Trocar GIF Loading</h3>
+
+<input
+type="file"
+id="upload-loading-gif"
+accept="image/*,.gif,.webp,.png,.jpg,.jpeg"
+>
+
+<button onclick="salvarLoadingGif()">
+Salvar GIF
+</button>
+
+</div>
+
+<!-- FOTO ADMIN -->
+
+<div class="admin-card">
+
+<h3>Trocar Ícone Admin</h3>
+
+<input
+type="file"
+id="upload-admin-icon"
+accept="image/*"
+>
+
+<button onclick="salvarAdminIcon()">
+Salvar Ícone
+</button>
+
+</div>
+
+<!-- MENSAGENS -->
+
+<div class="admin-card">
+
+<h3>Mensagens</h3>
+
+<div id="admin-mensagens"></div>
+
+</div>
+
+<!-- CURTIDAS -->
+
+<div class="admin-card">
+
+<h3>Gerenciar Curtidas</h3>
+
+<div id="admin-likes"></div>
+
+</div>
+
+<!-- CONVITE -->
+
+<div class="admin-card">
+
+<h3>Adicionar Convite</h3>
+
+<input
+type="file"
+id="upload-convite"
+accept="image/*"
+>
+
+<button onclick="salvarConvite()">
+Salvar Convite
+</button>
+
+</div>
+
+<!-- CARTA -->
+
+<div class="admin-card">
+
+<h3>Editar Carta</h3>
+
+<textarea id="admin-carta"></textarea>
+
+<button onclick="salvarCarta()">
+Salvar Carta
+</button>
+
+</div>
+
+<!-- FOTOS -->
+
+<div class="admin-card">
+
+<h3>Adicionar Fotos</h3>
+
+<p style="margin-top:10px;">
+Até 18 fotos 💗
+</p>
+
+<div
+
+style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
+"
+
+>
+
+<input type="file" id="foto1" accept="image/*">
+<input type="file" id="foto2" accept="image/*">
+<input type="file" id="foto3" accept="image/*">
+<input type="file" id="foto4" accept="image/*">
+<input type="file" id="foto5" accept="image/*">
+<input type="file" id="foto6" accept="image/*">
+<input type="file" id="foto7" accept="image/*">
+<input type="file" id="foto8" accept="image/*">
+<input type="file" id="foto9" accept="image/*">
+<input type="file" id="foto10" accept="image/*">
+<input type="file" id="foto11" accept="image/*">
+<input type="file" id="foto12" accept="image/*">
+<input type="file" id="foto13" accept="image/*">
+<input type="file" id="foto14" accept="image/*">
+<input type="file" id="foto15" accept="image/*">
+<input type="file" id="foto16" accept="image/*">
+<input type="file" id="foto17" accept="image/*">
+<input type="file" id="foto18" accept="image/*">
+
+</div>
+
+<button onclick="salvarFotosCarousel()">
+Salvar Fotos
+</button>
+
+</div>
+
+</div>
+<script>
+
+/* LOADING */
+
+setTimeout(function(){
+
+document.getElementById("loading").style.display = "none";
+
+document
+.getElementById("main-content")
+.classList.add("show-main");
+
+},2500);
+
+
+/* ELEMENTOS */
+
+const adminIcon =
+document.getElementById("admin-icon");
+
+const adminPanel =
+document.getElementById("admin-panel");
+
+const listaRecados =
+document.getElementById("lista-recados");
+
+const adminMensagens =
+document.getElementById("admin-mensagens");
+
+const conviteImg =
+document.getElementById("convite-img");
+
+const textoCarta =
+document.getElementById("texto-carta");
+
+const carouselImg =
+document.getElementById("carousel-img");
+
+const likes =
+document.getElementById("likes");
+
+const comentarioInput =
+document.getElementById("comentario");
+
+const listaComentarios =
+document.getElementById("lista-comentarios");
+
+const carousel =
+document.getElementById("carousel");
+
+
+/* ADMIN */
+
+adminIcon.onclick = function(){
+
+let senha =
+prompt("Senha admin:");
+
+if(senha === "kitty_2008"){
+
+adminPanel.style.display = "block";
+
+carregarMensagens();
+
+carregarCarta();
+
+carregarAdminCurtidas();
+
+}else{
+
+alert("ERRO");
+}
+}
+
+
+/* FECHAR ADMIN */
+
+function fecharAdmin(){
+
+adminPanel.style.display = "none";
+}
+
+
+/* CONTAGEM */
+
+function atualizarContagem(){
+
+const festa =
+new Date("July 18, 2026 14:30:00").getTime();
+
+const agora =
+new Date().getTime();
+
+const diff =
+festa - agora;
+
+if(diff <= 0){
+return;
+}
+
+document.getElementById("dias").innerText =
+Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("horas").innerText =
+Math.floor(
+(diff%(1000*60*60*24))
+/
+(1000*60*60)
+);
+
+document.getElementById("minutos").innerText =
+Math.floor(
+(diff%(1000*60*60))
+/
+(1000*60)
+);
+
+document.getElementById("segundos").innerText =
+Math.floor(
+(diff%(1000*60))
+/
+1000
+);
+
+}
+
+setInterval(atualizarContagem,1000);
+
+atualizarContagem();
+
+
+/* RECADOS */
+
+function salvarRecado(){
+
+let nome =
+document.getElementById("nome").value;
+
+let recado =
+document.getElementById("recado").value;
+
+if(nome === "" || recado === ""){
+
+alert("Preencha tudo 💗");
+
+return;
+}
+
+let mensagens =
+JSON.parse(
+localStorage.getItem("mensagens")
+) || [];
+
+mensagens.push({
+
+nome:nome,
+recado:recado
+
+});
+
+localStorage.setItem(
+"mensagens",
+JSON.stringify(mensagens)
+);
+
+document.getElementById("nome").value = "";
+
+document.getElementById("recado").value = "";
+
+carregarMensagens();
+}
+
+function carregarMensagens(){
+
+let mensagens =
+JSON.parse(
+localStorage.getItem("mensagens")
+) || [];
+
+listaRecados.innerHTML = "";
+
+adminMensagens.innerHTML = "";
+
+mensagens.forEach(function(msg,index){
+
+listaRecados.innerHTML += `
+
+<div class="wall-message">
+
+<h3>${msg.nome}</h3>
+
+<p style="margin-top:10px;">
+${msg.recado}
+</p>
+
+</div>
+
+`;
+
+adminMensagens.innerHTML += `
+
+<div class="wall-message">
+
+<h3>${msg.nome}</h3>
+
+<p style="margin-top:10px;">
+${msg.recado}
+</p>
+
+<button onclick="excluirMensagem(${index})">
+Excluir
+</button>
+
+</div>
+
+`;
+
+});
+}
+
+function excluirMensagem(index){
+
+let mensagens =
+JSON.parse(
+localStorage.getItem("mensagens")
+) || [];
+
+mensagens.splice(index,1);
+
+localStorage.setItem(
+"mensagens",
+JSON.stringify(mensagens)
+);
+
+carregarMensagens();
+}
+
+
+/* CARTA */
+
+function salvarCarta(){
+
+let texto =
+document.getElementById("admin-carta").value;
+
+localStorage.setItem(
+"carta",
+texto
+);
+
+carregarCarta();
+}
+
+function carregarCarta(){
+
+let carta =
+localStorage.getItem("carta")
+
+||
+
+"Obrigada por estar aqui 💗";
+
+textoCarta.innerText = carta;
+
+document.getElementById("admin-carta").value = carta;
+}
+
+carregarCarta();
+
+
+/* CONVITE */
+
+function salvarConvite(){
+
+let file =
+document.getElementById("upload-convite").files[0];
+
+if(!file){
+return;
+}
+
+let reader =
+new FileReader();
+
+reader.onload = function(e){
+
+localStorage.setItem(
+"convite",
+e.target.result
+);
+
+carregarConvite();
+}
+
+reader.readAsDataURL(file);
+}
+
+function carregarConvite(){
+
+let convite =
+localStorage.getItem("convite");
+
+if(convite){
+
+conviteImg.src = convite;
+
+}else{
+
+conviteImg.src =
+"https://via.placeholder.com/320x568/ffd6ea/d63384?text=Convite";
+}
+}
+
+carregarConvite();
+
+
+/* GIF LOADING */
+
+function salvarLoadingGif(){
+
+let file =
+document.getElementById(
+"upload-loading-gif"
+).files[0];
+
+if(!file){
+return;
+}
+
+let reader =
+new FileReader();
+
+reader.onload = function(e){
+
+localStorage.setItem(
+"loadingGif",
+e.target.result
+);
+
+document.getElementById(
+"loading-gif"
+).src = e.target.result;
+}
+
+reader.readAsDataURL(file);
+}
+let gifSalvo =
+localStorage.getItem("loadingGif");
+
+if(gifSalvo){
+
+document.getElementById(
+"loading-gif"
+).src = gifSalvo;
+}
+
+
+/* ÍCONE ADMIN */
+
+function salvarAdminIcon(){
+
+let file =
+document.getElementById("upload-admin-icon").files[0];
+
+if(!file){
+return;
+}
+
+let reader =
+new FileReader();
+
+reader.onload = function(e){
+
+localStorage.setItem(
+"adminIcon",
+e.target.result
+);
+
+adminIcon.src = e.target.result;
+}
+
+reader.readAsDataURL(file);
+}
+
+let iconSalvo =
+localStorage.getItem("adminIcon");
+
+if(iconSalvo){
+
+adminIcon.src = iconSalvo;
+}
+
+
+/* CARROSSEL */
+
+let fotos = [];
+
+let atual = 0;
+
+async function salvarFotosCarousel(){
+
+let novasFotos = [];
+
+for(let i=1;i<=18;i++){
+
+let input =
+document.getElementById("foto"+i);
+
+if(input.files.length > 0){
+
+let file =
+input.files[0];
+
+let imagem =
+await reduzirImagem(file);
+
+novasFotos.push(imagem);
+}
+}
+
+localStorage.setItem(
+"fotosCarousel",
+JSON.stringify(novasFotos)
+);
+
+fotos = novasFotos;
+
+mostrarFoto();
+
+alert("Fotos salvas 🎀");
+}
+
+function reduzirImagem(file){
+
+return new Promise(function(resolve){
+
+let reader =
+new FileReader();
+
+reader.onload = function(e){
+
+let img =
+new Image();
+
+img.onload = function(){
+
+let canvas =
+document.createElement("canvas");
+
+let ctx =
+canvas.getContext("2d");
+
+canvas.width = 500;
+
+canvas.height =
+img.height * (500 / img.width);
+
+ctx.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+resolve(
+
+canvas.toDataURL(
+"image/jpeg",
+0.7
+)
+
+);
+
+}
+
+img.src = e.target.result;
+}
+
+reader.readAsDataURL(file);
+
+});
+}
+
+function carregarCarousel(){
+
+let dados =
+localStorage.getItem("fotosCarousel");
+
+if(dados){
+
+fotos = JSON.parse(dados);
+
+}
+
+if(fotos.length > 0){
+
+mostrarFoto();
+
+}else{
+
+carouselImg.src =
+"https://via.placeholder.com/320x430/ffd6ea/d63384?text=Fotos";
+}
+}
+
+function mostrarFoto(){
+
+carouselImg.src = fotos[atual];
+
+atualizarCurtidas();
+
+mostrarComentarios();
+}
+
+function fotoProxima(){
+
+if(fotos.length === 0){
+return;
+}
+
+atual++;
+
+if(atual >= fotos.length){
+
+atual = 0;
+}
+
+mostrarFoto();
+}
+
+function fotoAnterior(){
+
+if(fotos.length === 0){
+return;
+}
+
+atual--;
+
+if(atual < 0){
+
+atual = fotos.length - 1;
+}
+
+mostrarFoto();
+}
+
+carregarCarousel();
+
+
+/* SWIPE */
+
+let startX = 0;
+
+carousel.addEventListener(
+"touchstart",
+function(e){
+
+startX =
+e.touches[0].clientX;
+});
+
+carousel.addEventListener(
+"touchend",
+function(e){
+
+let endX =
+e.changedTouches[0].clientX;
+
+if(startX - endX > 50){
+
+fotoProxima();
+}
+
+if(endX - startX > 50){
+
+fotoAnterior();
+}
+});
+
+
+/* CURTIDAS */
+
+let curtidas =
+JSON.parse(
+localStorage.getItem("curtidas")
+) || [];
+
+function curtirFoto(){
+
+curtidas[atual] =
+(curtidas[atual] || 0) + 1;
+
+localStorage.setItem(
+"curtidas",
+JSON.stringify(curtidas)
+);
+
+atualizarCurtidas();
+
+let heart =
+document.getElementById("big-heart");
+
+heart.classList.add("show-heart");
+
+setTimeout(function(){
+
+heart.classList.remove("show-heart");
+
+},700);
+}
+
+function atualizarCurtidas(){
+
+likes.innerText =
+curtidas[atual] || 0;
+}
+
+
+/* COMENTÁRIOS */
+
+let comentarios =
+JSON.parse(
+localStorage.getItem("comentarios")
+) || [];
+
+function comentarFoto(){
+
+let texto =
+comentarioInput.value;
+
+if(texto === ""){
+return;
+}
+
+if(!comentarios[atual]){
+
+comentarios[atual] = [];
+}
+
+comentarios[atual].push(texto);
+
+localStorage.setItem(
+"comentarios",
+JSON.stringify(comentarios)
+);
+
+comentarioInput.value = "";
+
+mostrarComentarios();
+}
+
+function mostrarComentarios(){
+
+listaComentarios.innerHTML = "";
+
+let listaAtual =
+comentarios[atual] || [];
+
+listaAtual.forEach(function(c){
+
+listaComentarios.innerHTML += `
+
+<div class="comment">
+💗 ${c}
+</div>
+
+`;
+
+});
+}
+
+
+/* ADMIN CURTIDAS */
+
+function carregarAdminCurtidas(){
+
+let area =
+document.getElementById("admin-likes");
+
+area.innerHTML = "";
+
+curtidas.forEach(function(qtd,index){
+
+area.innerHTML += `
+
+<div class="wall-message">
+
+<h3>
+Foto ${index+1}
+</h3>
+
+<p>
+❤️ ${qtd || 0}
+</p>
+
+<button onclick="removerCurtida(${index})">
+Remover Curtida
+</button>
+
+</div>
+
+`;
+
+});
+}
+
+function removerCurtida(index){
+
+if(curtidas[index] > 0){
+
+curtidas[index]--;
+
+localStorage.setItem(
+"curtidas",
+JSON.stringify(curtidas)
+);
+
+atualizarCurtidas();
+
+carregarAdminCurtidas();
+}
+}
+
+
+/* INICIAR */
+
+carregarMensagens();
+
+</script>
+
+</body>
+</html>
